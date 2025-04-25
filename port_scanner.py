@@ -40,7 +40,7 @@ for port in range(start_port, end_port + 1):
     if result == 0:
         message = f"Port {port}: OPEN"
         if port in vulnerabilities:
-            message += f" → ⚠️ {vulnerabilities[port]}"
+            message += f" {vulnerabilities[port]}"
         print(message)
         open_ports.append(port)
     sock.close()
@@ -60,7 +60,7 @@ with open("open_ports.txt", "w") as f:
             vuln = vulnerabilities.get(port, "")
             line = f"Port {port}: OPEN"
             if vuln:
-                line += f" → {vuln}"
+                line += f" {vuln}"
             f.write(line + "\n")
     else:
         f.write(f"No open ports found on {target} in range {start_port}-{end_port}.\n")
